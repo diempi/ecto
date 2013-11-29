@@ -1,0 +1,32 @@
+!!!
+html
+    head
+        meta( charset="utf-8" )/
+        block title
+            title= pageTitle
+
+        link( rel="stylesheet", href="/styles/public.css" )/
+
+
+    body( class=mode )
+        div#wrapper
+            header
+                h1
+                    a( href="/" )= pageTitle
+
+            block content
+
+            block sidebar
+                aside
+                    h2 About me
+                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed non risus
+
+            footer
+                p
+                    | Ce blog utilise le moteur
+                    = " "
+                    a( href="http://github.com/leny/ecto" ) ecto
+                    = " - "
+                    a( href="/admin" ) (admin)
+
+            block scripts

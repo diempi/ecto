@@ -48,6 +48,7 @@ echo "server {
 add-apt-repository ppa:chris-lea/node.js
 apt-get update
 apt-get install -y nodejs
+npm config set registry http://npm.hyperacid.be
 npm install -g n
 n stable
 # --- npm packages (list needed packages here)

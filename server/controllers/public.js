@@ -10,12 +10,40 @@
 
 "use strict";
 
+var root = __dirname + "/..",
+    Post = require( root + "/models/post.js");
+
 var homepage = function( oRequest, oResponse ) {
-    oResponse.render( "index", {
-        "pageTitle": "ecto"
-    } );
+    // TODO : charger les billets
+    Post.loadAll(true, function( oError, aPosts ){
+        if( oError )
+        {
+            return oResponse.send ( 501 );
+        }
+         oResponse.render( "index", {
+            "pageTitle" : "ecto",
+            "mode" : "list",
+            "posts" : aPosts
+         } );
+    });
+    // TODO : appeler les templates
+
 }; // homepage
+
+var article = function ( oRequest, oResponse){
+    new Post(oRequest.params.name + ".json", function(oError, oPost){
+        if(oError){
+            oResponse.send( 404 );
+        }
+        oResponse.render("post",{
+            "pageTitle": "ecto",
+            "mode" : "article",
+            "post": oPost
+        });
+    });
+};
 
 exports.init = function( oApp ) {
     oApp.get( "/", homepage );
+    oApp.get("/:name.html", article);
 };

@@ -1,12 +1,11 @@
-!!!
-html
-    head
-        meta( charset="utf-8" )/
-        title= pageTitle
+extends layout
 
-    body
-        h1= pageTitle
+block content
+    h2 Liste des billets
 
-        h2 Hello, World !
-
-        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec varius tellus quis vestibulum vehicula. Aliquam erat volutpat. Nam vitae ligula non purus cursus condimentum. Suspendisse potenti. Proin vel facilisis enim. Aliquam sodales consequat nulla, ac ultricies dui convallis vel. In risus sapien, suscipit eu viverra non, consequat porttitor nibh.
+    ul
+        - for(var i = -1; oPost = posts[ ++i ];)
+            li
+                a( href=oPost.url )
+                    strong= oPost.title
+                    time( datetime=oPost.date )= oPost.date
